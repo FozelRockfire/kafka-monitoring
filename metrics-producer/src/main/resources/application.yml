@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: task-producer
+
+server:
+  port: 8082
