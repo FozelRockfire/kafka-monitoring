@@ -1,6 +1,7 @@
 package com.t1study.metricsconsumer.model;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,9 +19,11 @@ public class StatisticName {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Schema(description = "id имени статистики", example = "1")
     private Long id;
 
     @Column(name = "name")
+    @Schema(description = "Наименование статистики", example = "VALUE")
     private String name;
 
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)

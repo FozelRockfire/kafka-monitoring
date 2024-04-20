@@ -1,5 +1,6 @@
 package com.t1study.metricsconsumer.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +16,11 @@ public class Measurement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Schema(description = "id измерения", example = "1")
     private Long id;
 
     @Column(name = "value")
+    @Schema(description = "Значение измерения", example = "10.5")
     private float value;
 
     @ManyToOne(fetch = FetchType.LAZY)

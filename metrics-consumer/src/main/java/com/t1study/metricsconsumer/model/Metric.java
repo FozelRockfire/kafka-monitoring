@@ -1,5 +1,6 @@
 package com.t1study.metricsconsumer.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,18 +14,20 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Metric {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Schema(description = "id метрики", example = "1")
     private Long id;
 
     @Column(name = "description")
+    @Schema(description = "Описание метрики", example = "Total space for path")
     private String description;
 
     @Column(name = "date")
+    @Schema(description = "Дата сохранения метрики", example = "2024-04-20T12:00:00Z")
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
