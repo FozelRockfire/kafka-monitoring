@@ -1,6 +1,6 @@
 package com.t1study.metricsconsumer.service;
 
-import com.t1study.metricsconsumer.dto.MeasurementDTO;
+import com.example.commonlib.dto.MeasurementDTO;
 import com.t1study.metricsconsumer.model.Measurement;
 import com.t1study.metricsconsumer.model.StatisticName;
 import com.t1study.metricsconsumer.repository.MeasurementRepository;

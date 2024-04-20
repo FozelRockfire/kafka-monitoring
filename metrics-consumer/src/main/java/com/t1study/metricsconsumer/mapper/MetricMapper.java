@@ -1,6 +1,6 @@
 package com.t1study.metricsconsumer.mapper;
 
-import com.t1study.metricsconsumer.dto.MetricDTO;
+import com.example.commonlib.dto.MetricDTO;
 import com.t1study.metricsconsumer.model.Metric;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

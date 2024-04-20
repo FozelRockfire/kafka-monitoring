@@ -1,6 +1,6 @@
 package com.t1study.metricsconsumer.service;
 
-import com.t1study.metricsconsumer.dto.MetricDTO;
+import com.example.commonlib.dto.MetricDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -20,7 +20,6 @@ public class KafkaMetricsListener {
             throw new RuntimeException();
         }
         log.info("Ok");
-        System.out.println(metric);
 
         metricService.saveMetric(metric);
     }

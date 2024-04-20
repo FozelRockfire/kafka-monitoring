@@ -1,6 +1,6 @@
-package com.t1study.metricsproducer.dto;
+package com.example.commonlib.dto;
 
-import lombok.*;
+import lombok.Builder;
 
 @Builder
 public record MeasurementDTO(

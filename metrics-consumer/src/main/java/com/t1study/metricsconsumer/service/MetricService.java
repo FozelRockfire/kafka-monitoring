@@ -1,7 +1,8 @@
 package com.t1study.metricsconsumer.service;
 
-import com.t1study.metricsconsumer.dto.MeasurementDTO;
-import com.t1study.metricsconsumer.dto.MetricDTO;
+
+import com.example.commonlib.dto.MeasurementDTO;
+import com.example.commonlib.dto.MetricDTO;
 import com.t1study.metricsconsumer.exception.NotFoundException;
 import com.t1study.metricsconsumer.mapper.MetricMapper;
 import com.t1study.metricsconsumer.model.BaseUnit;

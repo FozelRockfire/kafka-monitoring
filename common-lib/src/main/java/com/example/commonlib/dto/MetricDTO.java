@@ -1,4 +1,4 @@
-package com.t1study.metricsconsumer.dto;
+package com.example.commonlib.dto;
 
 import lombok.Builder;
 

@@ -1,7 +1,7 @@
 package com.t1study.metricsconsumer.api.controller;
 
+import com.example.commonlib.dto.MetricDTO;
 import com.t1study.metricsconsumer.api.ConsumerApi;
-import com.t1study.metricsconsumer.dto.MetricDTO;
 import com.t1study.metricsconsumer.service.MetricService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

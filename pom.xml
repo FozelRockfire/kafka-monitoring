@@ -31,6 +31,7 @@
     <modules>
         <module>metrics-consumer</module>
         <module>metrics-producer</module>
+        <module>common-lib</module>
     </modules>
 
     <dependencies>

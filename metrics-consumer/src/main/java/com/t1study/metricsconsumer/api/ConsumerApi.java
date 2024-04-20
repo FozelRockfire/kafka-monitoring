@@ -1,6 +1,6 @@
 package com.t1study.metricsconsumer.api;
 
-import com.t1study.metricsconsumer.dto.MetricDTO;
+import com.example.commonlib.dto.MetricDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
