@@ -1,6 +1,6 @@
 package com.t1study.metricsconsumer.api;
 
-import com.t1study.metricsconsumer.model.Metric;
+import com.t1study.metricsconsumer.dto.MetricDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/metrics")
+@RequestMapping("/api/metrics")
 public interface ConsumerApi {
 
     @GetMapping
-    ResponseEntity<List<Metric>> getAllMetrics();
+    ResponseEntity<List<MetricDTO>> getAllMetrics();
 
     @GetMapping("/{id}")
-    ResponseEntity<Metric> getMetricById(
+    ResponseEntity<MetricDTO> getMetricById(
             @PathVariable Long id
     );
 }

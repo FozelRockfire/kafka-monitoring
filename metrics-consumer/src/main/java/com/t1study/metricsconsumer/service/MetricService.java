@@ -2,6 +2,8 @@ package com.t1study.metricsconsumer.service;
 
 import com.t1study.metricsconsumer.dto.MeasurementDTO;
 import com.t1study.metricsconsumer.dto.MetricDTO;
+import com.t1study.metricsconsumer.exception.NotFoundException;
+import com.t1study.metricsconsumer.mapper.MetricMapper;
 import com.t1study.metricsconsumer.model.BaseUnit;
 import com.t1study.metricsconsumer.model.Measurement;
 import com.t1study.metricsconsumer.model.Metric;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -67,5 +70,17 @@ public class MetricService {
                     .build());
         }
         return baseUnit;
+    }
+
+    public List<MetricDTO> getAllMetrics() {
+        return metricRepository.findAll()
+                .stream()
+                .map(MetricMapper.INSTANCE::toDTO)
+                .toList();
+    }
+
+    public MetricDTO getMetricsById(Long id) {
+        return MetricMapper.INSTANCE.toDTO(metricRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Метрик с заданным id не существует")));
     }
 }

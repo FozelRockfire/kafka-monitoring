@@ -1,7 +1,8 @@
 package com.t1study.metricsconsumer.api.controller;
 
 import com.t1study.metricsconsumer.api.ConsumerApi;
-import com.t1study.metricsconsumer.model.Metric;
+import com.t1study.metricsconsumer.dto.MetricDTO;
+import com.t1study.metricsconsumer.service.MetricService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,13 +13,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ConsumerController implements ConsumerApi {
 
+    private final MetricService metricService;
+
     @Override
-    public ResponseEntity<List<Metric>> getAllMetrics() {
-        return null;
+    public ResponseEntity<List<MetricDTO>> getAllMetrics() {
+        return ResponseEntity.ok(metricService.getAllMetrics());
     }
 
     @Override
-    public ResponseEntity<Metric> getMetricById(Long id) {
-        return null;
+    public ResponseEntity<MetricDTO> getMetricById(Long id) {
+        return ResponseEntity.ok(metricService.getMetricsById(id));
     }
 }
