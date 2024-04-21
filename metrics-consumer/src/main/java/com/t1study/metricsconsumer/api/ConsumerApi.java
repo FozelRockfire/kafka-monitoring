@@ -1,7 +1,7 @@
 package com.t1study.metricsconsumer.api;
 
-import com.example.commonlib.dto.MetricDTO;
-import com.t1study.metricsconsumer.exception.ErrorMessage;
+import com.example.commonlib.dto.MetricResponse;
+import com.example.commonlib.exception.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -28,7 +28,7 @@ public interface ConsumerApi {
                     description = "Список метрик получен",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = MetricDTO.class)
+                            schema = @Schema(implementation = MetricResponse.class)
                     )
             ),
             @ApiResponse(
@@ -48,7 +48,7 @@ public interface ConsumerApi {
                     )
             )
     })
-    ResponseEntity<List<MetricDTO>> getAllMetrics();
+    ResponseEntity<List<MetricResponse>> getAllMetrics();
 
     @Operation(summary = "Получить метрику по id",
             description = "Получить конкретную метрику по её id")
@@ -58,7 +58,7 @@ public interface ConsumerApi {
                     description = "Метрика получена",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = MetricDTO.class)
+                            schema = @Schema(implementation = MetricResponse.class)
                     )
             ),
             @ApiResponse(
@@ -79,7 +79,7 @@ public interface ConsumerApi {
             )
     })
     @GetMapping("/{id}")
-    ResponseEntity<MetricDTO> getMetricById(
+    ResponseEntity<MetricResponse> getMetricById(
             @Parameter(description = "id метрики для получения", required = true, example = "1")
             @PathVariable Long id
     );

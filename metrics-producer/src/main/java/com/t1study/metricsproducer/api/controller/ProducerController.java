@@ -1,5 +1,6 @@
 package com.t1study.metricsproducer.api.controller;
 
+import com.example.commonlib.dto.MetricRequest;
 import com.t1study.metricsproducer.api.ProducerApi;
 import com.t1study.metricsproducer.service.ProducerService;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,8 @@ public class ProducerController implements ProducerApi {
     private final ProducerService producerService;
 
     @Override
-    public ResponseEntity<String> sendMetrics(String metricName) {
-        return ResponseEntity.ok("Метрика отправлена: " + producerService.sendMetrics(metricName));
-
+    public ResponseEntity<MetricRequest> sendMetrics(String metricName) {
+        return ResponseEntity.ok(producerService.sendMetrics(metricName));
     }
 
 }

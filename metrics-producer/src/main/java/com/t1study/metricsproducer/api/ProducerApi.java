@@ -1,11 +1,11 @@
 package com.t1study.metricsproducer.api;
 
 
-import com.t1study.metricsproducer.exception.ErrorMessage;
+import com.example.commonlib.dto.MetricRequest;
+import com.example.commonlib.exception.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -26,10 +26,8 @@ public interface ProducerApi {
                     responseCode = "200",
                     description = "Метрика успешно отправлена",
                     content = @Content(
-                            mediaType = "text/plain",
-                            examples = {
-                                    @ExampleObject(name = "Пример успешного ответа", value = "Метрика успешно отправлена")
-                            }
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = MetricRequest.class)
                     )
             ),
             @ApiResponse(
@@ -49,7 +47,7 @@ public interface ProducerApi {
                     )
             )
     })
-    ResponseEntity<String> sendMetrics(
+    ResponseEntity<MetricRequest> sendMetrics(
             @Parameter(description = "Имя метрики для отправки", required = true, example = "disk.total")
             @RequestParam(name = "metricName")
             String metricName

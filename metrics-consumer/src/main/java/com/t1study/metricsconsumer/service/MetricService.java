@@ -2,8 +2,9 @@ package com.t1study.metricsconsumer.service;
 
 
 import com.example.commonlib.dto.MeasurementDTO;
-import com.example.commonlib.dto.MetricDTO;
-import com.t1study.metricsconsumer.exception.NotFoundException;
+import com.example.commonlib.dto.MetricRequest;
+import com.example.commonlib.dto.MetricResponse;
+import com.example.commonlib.exception.NotFoundException;
 import com.t1study.metricsconsumer.mapper.MetricMapper;
 import com.t1study.metricsconsumer.model.BaseUnit;
 import com.t1study.metricsconsumer.model.Measurement;
@@ -30,24 +31,36 @@ public class MetricService {
     private final MetricNameRepository metricNameRepository;
     private final BaseUnitRepository baseUnitRepository;
 
-    public void saveMetric(MetricDTO metricDTO) {
-        MetricName metricName = findOrSaveMetricName(metricDTO.name());
+    public List<MetricResponse> getAllMetrics() {
+        return metricRepository.findAll()
+                .stream()
+                .map(MetricMapper.INSTANCE::toDTO)
+                .toList();
+    }
+
+    public MetricResponse getMetricsById(Long id) {
+        return MetricMapper.INSTANCE.toDTO(metricRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Метрик с заданным id не существует")));
+    }
+
+    public void saveMetric(MetricRequest metricRequest) {
+        MetricName metricName = findOrSaveMetricName(metricRequest.name());
 
         BaseUnit baseUnit = null;
-        if (metricDTO.baseUnit() != null) {
-            baseUnit = findOrSaveBaseUnit(metricDTO.baseUnit());
+        if (metricRequest.baseUnit() != null) {
+            baseUnit = findOrSaveBaseUnit(metricRequest.baseUnit());
         }
         
         Metric metric = metricRepository.save(Metric.builder()
             .name(metricName)
-            .description(metricDTO.description())
+            .description(metricRequest.description())
             .baseUnit(baseUnit)
             .date(new Date())
             .build());
 
         System.out.println(metric.getId());
 
-        for (MeasurementDTO measurementDTO : metricDTO.measurements()) {
+        for (MeasurementDTO measurementDTO : metricRequest.measurements()) {
             Measurement measurement = measurementService.saveMeasurements(measurementDTO);
             measurement.setMetric(metric);
         }
@@ -71,17 +84,5 @@ public class MetricService {
                     .build());
         }
         return baseUnit;
-    }
-
-    public List<MetricDTO> getAllMetrics() {
-        return metricRepository.findAll()
-                .stream()
-                .map(MetricMapper.INSTANCE::toDTO)
-                .toList();
-    }
-
-    public MetricDTO getMetricsById(Long id) {
-        return MetricMapper.INSTANCE.toDTO(metricRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Метрик с заданным id не существует")));
     }
 }

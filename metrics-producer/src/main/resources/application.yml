@@ -7,6 +7,7 @@ spring:
     consumer:
       value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
 
+# spring actuator
 management:
   endpoints:
     web:

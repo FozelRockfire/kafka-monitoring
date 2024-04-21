@@ -1,4 +1,4 @@
-package com.t1study.metricsconsumer.exception;
+package com.example.commonlib.exception;
 
 public class NotFoundException extends RuntimeException {
 
