@@ -22,7 +22,7 @@ public class MetricName {
     @Schema(description = "id имени метрики", example = "1")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     @Schema(description = "Наименование метрики", example = "disk.total")
     private String name;
 

@@ -19,7 +19,7 @@ public class Measurement {
     @Schema(description = "id измерения", example = "1")
     private Long id;
 
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     @Schema(description = "Значение измерения", example = "10.5")
     private float value;
 

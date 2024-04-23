@@ -1,6 +1,7 @@
 package com.t1study.metricsconsumer.service;
 
 import com.example.commonlib.dto.MetricRequest;
+import com.t1study.metricsconsumer.service.impl.MetricServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaMetricsListener {
 
-    private final MetricService metricService;
+    private final MetricServiceImpl metricService;
 
     @KafkaListener(id = "MetricGroup", topics = "metrics-topic")
     public void listen(MetricRequest metric){

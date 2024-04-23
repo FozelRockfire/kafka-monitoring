@@ -22,7 +22,7 @@ public class BaseUnit {
     @Schema(description = "id единицы измерения", example = "1")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     @Schema(description = "Наименование единицы измерения", example = "bytes")
     private String name;
 

@@ -31,7 +31,7 @@ public class Metric {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "name_id")
+    @JoinColumn(name = "name_id", nullable = false)
     private MetricName name;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -22,7 +22,7 @@ public class StatisticName {
     @Schema(description = "id имени статистики", example = "1")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     @Schema(description = "Наименование статистики", example = "VALUE")
     private String name;
 
