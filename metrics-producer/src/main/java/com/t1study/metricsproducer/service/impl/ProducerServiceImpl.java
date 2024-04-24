@@ -4,14 +4,18 @@ import com.example.commonlib.dto.MetricRequest;
 import com.example.commonlib.exception.NotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.t1study.metricsproducer.model.MainMetrics;
 import com.t1study.metricsproducer.service.ProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Random;
 
 @Service
 @Slf4j
@@ -51,6 +55,15 @@ public class ProducerServiceImpl implements ProducerService {
         }
 
         return metricRequest;
+    }
+
+    @Scheduled(fixedRate = 5000L)
+    private void sendRandomMainMetric() {
+        Random random = new Random();
+        MainMetrics[] metrics = MainMetrics.values();
+
+        MainMetrics randomMetric = metrics[random.nextInt(metrics.length)];
+        sendMetrics(randomMetric.getAddress());
     }
 
 }
